@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BilkentKafe.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace BilkentKafe
 {
     public partial class GecmisSiparislerForm : Form
     {
-        public GecmisSiparislerForm()
+        KafeVeri db;
+        public GecmisSiparislerForm(KafeVeri kafeVeri)
         {
+            db = kafeVeri;
             InitializeComponent();
+            dgvSiparisler.DataSource = db.GecmisSiparisler;
         }
 
         private void lblSiparisDetaylari_Click(object sender, EventArgs e)
@@ -25,6 +29,15 @@ namespace BilkentKafe
         private void lblSiparişler_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvSiparisler_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvSiparisler.SelectedRows.Count == 0)
+                return;
+            DataGridViewRow satir = dgvSiparisler.SelectedRows[0];
+            Siparis siparis = (Siparis)satir.DataBoundItem;
+            dgvSiparisDetaylar.DataSource = siparis.SiparisDetaylar;
         }
     }
 }

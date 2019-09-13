@@ -122,6 +122,7 @@
             this.btnAnaSayfa.TabIndex = 5;
             this.btnAnaSayfa.Text = "ANA SAYFAYA DÖN";
             this.btnAnaSayfa.UseVisualStyleBackColor = false;
+            this.btnAnaSayfa.Click += new System.EventHandler(this.btnAnaSayfa_Click);
             // 
             // label1
             // 

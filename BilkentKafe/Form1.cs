@@ -16,6 +16,7 @@ namespace BilkentKafe
 {
     public partial class Form1 : Form
     {
+    int abc = 1500;
         int masaAdet = 20;
         KafeVeri db;
         public Form1()

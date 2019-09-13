@@ -60,6 +60,7 @@ namespace BilkentKafe
 
         private void btnAnaSayfa_Click(object sender, EventArgs e)
         {
+            // Bu pencereyi kapatarak ana sayfaya dön
             Close();
         }
     }

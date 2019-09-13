@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BilkentKafe.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,38 @@ namespace BilkentKafe
 {
     public partial class UrunlerForm : Form
     {
-        public UrunlerForm()
+        KafeVeri db;
+        BindingList<Urun> blUrunler;
+        public UrunlerForm(KafeVeri kafeVeri)
         {
+            db = kafeVeri;
+            blUrunler = new BindingList<Urun>(db.Urunler);
             InitializeComponent();
+            dgvUrunler.DataSource = blUrunler; 
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnUrunEkle_Click(object sender, EventArgs e)
+        {
+            string urunAd = txtUrunAd.Text.Trim();
+
+            if (urunAd == "")
+            {
+                MessageBox.Show("Lütfen bir ürün adı giriniz.");
+                return;
+            }
+
+            Urun urun = new Urun
+            {
+                UrunAd = urunAd,
+                BirimFiyat = nudBirimFiyat.Value
+            };
+
+            blUrunler.Add(urun);
         }
     }
 }
